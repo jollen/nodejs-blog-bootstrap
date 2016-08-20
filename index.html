@@ -85,7 +85,7 @@
         {{for posts}}
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-                <img src="http://lorempixel.com/400/250/?{{:id}}" alt="">
+                <img src="http://lorempixel.com/400/250/?{{:_id}}" alt="">
                 <div class="caption">
                     <h4>{{:subject}}</h4>
                     <p>{{:body}}</p>
@@ -115,11 +115,12 @@
 
     <script>
     $.ajax({
+        type: "get",
         dataType: "jsonp",
         url: "https://flowchainjs.com/1/post"
     })
     .done(function( data ) {
-        console.log (data)
+        console.log ('[ajax]', data);
         var tmpl = $.templates("#myTemplate");
         var html = tmpl.render({
             posts: data
